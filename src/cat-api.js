@@ -1,9 +1,12 @@
 import axios from 'axios';
+axios.defaults.headers.common['x-api-key'] =
+'live_t7uuItgU0Jexdm4scIfJANaKu1jiFduivrsmVzDyDvDiaiR5dgkr64I9FVL4UmKX'
+
 const BASE_URL = 'https://api.thecatapi.com/v1/';
-axios.defaults.headers.common["x-api-key"] =
-"api_key=live_t7uuItgU0Jexdm4scIfJANaKu1jiFduivrsmVzDyDvDiaiR5dgkr64I9FVL4UmKX";
+const ENDPOINT = 'breeds'
+
 const fetchBreeds = function () {
-    return fetch(`${BASE_URL}breeds`).then(response => {
+    return fetch(`${BASE_URL}${ENDPOINT}`).then(response => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
