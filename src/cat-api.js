@@ -10,7 +10,7 @@ const END_POINT = 'breeds';
 const fetchBreeds = function () {
     return fetch(`${BASE_URL}/${END_POINT}`).then((resp) => {
         if (!resp.ok) {
-          throw new Error(`Вимушена помилка статусу: ${resp.status}`);
+          throw new Error(`Вимушена помилка статусу: ${resp.status} | Причина: ${resp.statusText}`);
         }
         return response.json();
       });

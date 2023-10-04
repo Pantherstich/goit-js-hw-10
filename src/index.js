@@ -10,3 +10,16 @@ const refs = {
 refs.breedSelect.addEventListener('change', onSelect);
 
 let arr = [];
+fetchBreeds()
+.then(resp => {
+    resp.map(item => {
+        arr.push({text: item.name, value: item.id});
+});
+new SlimSelect(
+    {
+    select: '.breed-select',
+    data: arr,
+});
+})
+.catch(error => console.log(error));
+
