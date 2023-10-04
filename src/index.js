@@ -8,3 +8,5 @@ const refs = {
     error: document.querySelector('.error'),
 }
 refs.breedSelect.addEventListener('change', onSelect);
+
+let arr = [];
