@@ -7,10 +7,11 @@ const refs = {
     catInfo: document.querySelector('.cat-info'),
     error: document.querySelector('.error'),
 }
-refs.loader.classList.add('hide');
-refs.error.classList.add('hide');
+
 refs.breedSelect.addEventListener('change', onSelect);
 
+refs.loader.classList.add('hide');
+refs.error.classList.add('hide');
 
 let arr = [];
 fetchBreeds()
@@ -32,7 +33,7 @@ function onSelect(event){
     const breedId = event.target.value;
     console.log(breedId);
         refs.breedSelect.classList.add('hide');
-        refs.loader.classList.add('hide');
+        refs.loader.classList.remove('hide');
         refs.catInfo.classList.add('hide');
         fetchCatByBreed(breedId)
         .then(resp => {
