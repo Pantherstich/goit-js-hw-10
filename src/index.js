@@ -25,9 +25,12 @@ new SlimSelect(
 });
 })
 .catch(error => console.log(error));
+console.log(arr);
+
 
 function onSelect(event){
     const breedId = event.target.value;
+    console.log(breedId);
         refs.breedSelect.classList.add('hide');
         refs.loader.classList.add('hide');
         refs.catInfo.classList.add('hide');
@@ -35,12 +38,13 @@ function onSelect(event){
         .then(resp => {
             refs.breedSelect.classList.remove('hide');
             const data = resp.data[0].breeds[0];
-
-            return `<img src="${resp.data[0].url}" width=500>
+console.log(data)
+            return `<img src="${resp.data[0].url}" alt="" width=480 class="catImg">
             <h2>${data.name}</h2>
             <p>${data.description}</p>
             <p><b>Tempetament:</b> ${data.temperament}</p>`;
-        })
+        }
+        )
 .then(resp => {
     refs.loader.classList.add('hide');
     refs.catInfo.classList.remove('hide');
