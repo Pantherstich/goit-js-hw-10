@@ -7,7 +7,10 @@ const refs = {
     catInfo: document.querySelector('.cat-info'),
     error: document.querySelector('.error'),
 }
+refs.loader.classList.add('hide');
+refs.error.classList.add('hide');
 refs.breedSelect.addEventListener('change', onSelect);
+
 
 let arr = [];
 fetchBreeds()
@@ -22,4 +25,31 @@ new SlimSelect(
 });
 })
 .catch(error => console.log(error));
+
+function onSelect(event){
+    const breedId = event.target.value;
+        refs.breedSelect.classList.add('hide');
+        refs.loader.classList.add('hide');
+        refs.catInfo.classList.add('hide');
+        fetchCatByBreed(breedId)
+        .then(resp => {
+            refs.breedSelect.classList.remove('hide');
+            const data = resp.data[0].breeds[0];
+
+            return `<img src="${resp.data[0].url}" width=500>
+            <h2>${data.name}</h2>
+            <p>${data.description}</p>
+            <p><b>Tempetament:</b> ${data.temperament}</p>`;
+        })
+.then(resp => {
+    refs.loader.classList.add('hide');
+    refs.catInfo.classList.remove('hide');
+      return (refs.catInfo.innerHTML = resp);
+})
+.catch(error => {
+    refs.breedSelect.classList.remove('hide');
+    refs.loader.classList.add('hide');
+    Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
+                });
+                         };
 

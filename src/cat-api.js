@@ -12,7 +12,7 @@ const fetchBreeds = function () {
         if (!resp.ok) {
           throw new Error(`Вимушена помилка статусу: ${resp.status} | Причина: ${resp.statusText}`);
         }
-        return response.json();
+        return resp.json();
       });
 }
 
