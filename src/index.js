@@ -26,7 +26,16 @@ new SlimSelect(
 });
 })
 .catch(error => console.log(error));
-console.log(arr);
+// console.log(arr);
+// const max = arr.length;
+// function randomBreed() {
+//     return Math.floor(Math.random() * (67 + 1));
+//   }
+// const zeroId = randomBreed();
+
+//   console.log(arr[zeroId]);
+//   console.log(zeroId);
+
 
 
 function onSelect(event){
@@ -39,7 +48,6 @@ function onSelect(event){
         .then(resp => {
             refs.breedSelect.classList.remove('hide');
             const data = resp.data[0].breeds[0];
-console.log(data)
             return `<img src="${resp.data[0].url}" alt="" width=480 class="catImg">
             <h2>${data.name}</h2>
             <p>${data.description}</p>
