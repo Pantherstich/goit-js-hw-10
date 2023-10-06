@@ -8,38 +8,11 @@ const refs = {
     error: document.querySelector('.error'),
 }
 
-refs.breedSelect.addEventListener('change', onSelect);
-
 refs.loader.classList.add('hide');
 refs.error.classList.add('hide');
 
-let arr = [];
-fetchBreeds()
-.then(resp => {
-    resp.map(item => {
-        arr.push({text: item.name, value: item.id});
-});
-new SlimSelect(
-    {
-    select: '.breed-select',
-    data: arr,
-});
-})
-.catch(error => console.log(error));
-// console.log(arr);
-// const max = arr.length;
-// function randomBreed() {
-//     return Math.floor(Math.random() * (67 + 1));
-//   }
-// const zeroId = randomBreed();
-
-//   console.log(arr[zeroId]);
-//   console.log(zeroId);
-
-
-
 function onSelect(event){
-    const breedId = event.target.value;
+    const breedId = event[0].value;
     console.log(breedId);
         refs.breedSelect.classList.add('hide');
         refs.loader.classList.remove('hide');
@@ -66,3 +39,20 @@ function onSelect(event){
                 });
                          };
 
+
+let arr = [];
+fetchBreeds()
+.then(resp => {
+    resp.map(item => {
+        arr.push({text: item.name, value: item.id});
+});
+new SlimSelect(
+    {
+    select: '.breed-select',
+    data: arr,
+    events: {
+        afterChange: (newVal) => onSelect(newVal)
+    },
+});
+})
+.catch(error => console.log(error));
